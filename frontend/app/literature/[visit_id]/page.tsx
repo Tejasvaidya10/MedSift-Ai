@@ -112,7 +112,7 @@ export default function LiteraturePage() {
                             <div className="flex items-center gap-2 mt-1">
                               {paper.journal && <span className="text-xs text-muted-foreground italic">{paper.journal}</span>}
                               {paper.year && <Badge variant="outline" className="text-[10px] px-1.5">{paper.year}</Badge>}
-                              <Badge variant="secondary" className="text-[10px] px-1.5">⭐ {paper.influential_citation_count} influential</Badge>
+                              <Badge variant="secondary" className="text-[10px] px-1.5">{paper.influential_citation_count} influential</Badge>
                               <span className="text-[10px] text-muted-foreground">{paper.citation_count} citations</span>
                             </div>
                           </div>
@@ -123,7 +123,7 @@ export default function LiteraturePage() {
                         )}
 
                         {paper.relevance_explanation && (
-                          <p className="text-xs text-blue-600 mt-2 italic">💡 {paper.relevance_explanation}</p>
+                          <p className="text-xs text-blue-600 mt-2 italic">Why it matches: {paper.relevance_explanation}</p>
                         )}
 
                         {/* Feedback buttons */}
@@ -204,7 +204,7 @@ export default function LiteraturePage() {
                         </div>
 
                         {trial.why_it_matches && (
-                          <p className="text-xs text-blue-600 mt-2 italic">💡 {trial.why_it_matches}</p>
+                          <p className="text-xs text-blue-600 mt-2 italic">Why it matches: {trial.why_it_matches}</p>
                         )}
 
                         {/* Feedback */}
@@ -237,7 +237,7 @@ export default function LiteraturePage() {
             {/* Learning loop note */}
             <Card className="mt-4 bg-blue-50 border-blue-200">
               <CardContent className="p-4">
-                <p className="text-xs text-blue-700 font-semibold mb-1">🧠 Learning Loop Active</p>
+                <p className="text-xs text-blue-700 font-semibold mb-1">Learning Loop Active</p>
                 <p className="text-xs text-blue-600">
                   Your feedback is stored and used to boost relevant keywords in future literature searches.
                   Over time, MedSift learns which papers and trials are most useful for similar cases.

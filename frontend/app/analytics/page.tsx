@@ -161,15 +161,15 @@ export default function AnalyticsPage() {
       {/* Boosted keywords table */}
       {analytics.top_boosted_keywords?.length > 0 && (
         <Card className="mt-6">
-          <CardHeader><CardTitle className="text-sm">🚀 Top Boosted Keywords (Learning Loop)</CardTitle></CardHeader>
+          <CardHeader><CardTitle className="text-sm">Top Boosted Keywords (Learning Loop)</CardTitle></CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b text-left text-xs uppercase text-muted-foreground">
                     <th className="pb-2 pr-4">Keyword</th>
-                    <th className="pb-2 pr-4">👍 Positive</th>
-                    <th className="pb-2 pr-4">👎 Negative</th>
+                    <th className="pb-2 pr-4">Positive</th>
+                    <th className="pb-2 pr-4">Negative</th>
                     <th className="pb-2">Boost Score</th>
                   </tr>
                 </thead>
@@ -202,12 +202,12 @@ export default function AnalyticsPage() {
       {/* Top-rated papers */}
       {(feedbackAnalytics?.most_relevant_papers?.length ?? 0) > 0 && (
         <Card className="mt-6">
-          <CardHeader><CardTitle className="text-sm">⭐ Most Relevant Papers (from Feedback)</CardTitle></CardHeader>
+          <CardHeader><CardTitle className="text-sm">Most Relevant Papers (from Feedback)</CardTitle></CardHeader>
           <CardContent className="space-y-2">
             {feedbackAnalytics?.most_relevant_papers?.map((p, i) => (
               <div key={i} className="flex items-center justify-between gap-3 py-2 border-b last:border-0 text-sm">
                 <span className="flex-1 font-medium">{p.title}</span>
-                <span className="text-green-600 font-semibold shrink-0">{p.positive_votes}/{p.total_votes} 👍</span>
+                <span className="text-green-600 font-semibold shrink-0">{p.positive_votes}/{p.total_votes} positive</span>
               </div>
             ))}
           </CardContent>

@@ -79,7 +79,7 @@ def api_put(endpoint: str, data: dict = None):
 # --- Page Config ---
 st.set_page_config(
     page_title="MedSift AI",
-    page_icon="🏥",
+    page_icon=":hospital:",
     layout="wide",
 )
 
@@ -178,39 +178,39 @@ if page == "Upload & Process":
                             if med.get("instructions"):
                                 st.caption(f"Instructions: {med['instructions']}")
                             if med.get("evidence"):
-                                st.caption(f"📝 Evidence: _{med['evidence']}_")
+                                st.caption(f"Evidence: _{med['evidence']}_")
                             if not verified:
-                                st.caption("⚠️ _Could not verify against transcript_")
+                                st.caption("Warning: _Could not verify against transcript_")
 
                     if ps.get("tests_ordered"):
                         st.subheader("Tests Ordered")
                         for test in ps["tests_ordered"]:
                             st.markdown(f"**{test['test_name']}** — {test['timeline']}")
                             if test.get("evidence"):
-                                st.caption(f"📝 _{test['evidence']}_")
+                                st.caption(f"Evidence: _{test['evidence']}_")
                             if not test.get("verified", True):
-                                st.caption("⚠️ _Could not verify against transcript_")
+                                st.caption("Warning: _Could not verify against transcript_")
 
                     if ps.get("follow_up_plan"):
                         st.subheader("Follow-Up Plan")
                         for fu in ps["follow_up_plan"]:
                             st.markdown(f"- [ ] **{fu['action']}** — {fu['date_or_timeline']}")
                             if not fu.get("verified", True):
-                                st.caption("⚠️ _Could not verify against transcript_")
+                                st.caption("Warning: _Could not verify against transcript_")
 
                     if ps.get("lifestyle_recommendations"):
                         st.subheader("Lifestyle Recommendations")
                         for rec in ps["lifestyle_recommendations"]:
                             st.markdown(f"- **{rec['recommendation']}**: {rec.get('details', '')}")
                             if not rec.get("verified", True):
-                                st.caption("⚠️ _Could not verify against transcript_")
+                                st.caption("Warning: _Could not verify against transcript_")
 
                     if ps.get("red_flags_for_patient"):
-                        st.subheader("⚠️ When to Seek Urgent Care")
+                        st.subheader("When to Seek Urgent Care")
                         for rf in ps["red_flags_for_patient"]:
                             st.warning(rf["warning"])
                             if not rf.get("verified", True):
-                                st.caption("⚠️ _Could not verify against transcript_")
+                                st.caption("Warning: _Could not verify against transcript_")
 
                     if ps.get("questions_and_answers"):
                         st.subheader("Questions & Answers")
@@ -218,7 +218,7 @@ if page == "Upload & Process":
                             st.markdown(f"**Q:** {qa['question']}")
                             st.markdown(f"**A:** {qa['answer']}")
                             if not qa.get("verified", True):
-                                st.caption("⚠️ _Could not verify against transcript_")
+                                st.caption("Warning: _Could not verify against transcript_")
                             st.divider()
 
                 with tab2:
@@ -294,10 +294,10 @@ if page == "Upload & Process":
                     if cn.get("action_items"):
                         st.subheader("Action Items")
                         for item in cn["action_items"]:
-                            priority_icon = {"high": "🔴", "medium": "🟡", "low": "🟢"}.get(item.get("priority", ""), "")
+                            priority_icon = {"high": "[HIGH]", "medium": "[MED]", "low": "[LOW]"}.get(item.get("priority", ""), "")
                             st.markdown(f"{priority_icon} {item['action']}")
                             if not item.get("verified", True):
-                                st.caption("⚠️ _Could not verify against transcript_")
+                                st.caption("Warning: _Could not verify against transcript_")
 
                     if vid and st.button("Save SOAP Note", type="primary", key="save_soap"):
                         updated_note = {
@@ -365,7 +365,7 @@ if page == "Upload & Process":
                                 # Feedback buttons
                                 fcol1, fcol2 = st.columns(2)
                                 with fcol1:
-                                    if st.button("👍 Relevant", key=f"rel_{paper['paper_id']}"):
+                                    if st.button("Relevant", key=f"rel_{paper['paper_id']}"):
                                         api_post("/api/feedback", data={
                                             "visit_id": analysis["visit_id"],
                                             "feedback_type": "literature_relevance",
@@ -376,7 +376,7 @@ if page == "Upload & Process":
                                         })
                                         st.success("Feedback recorded!")
                                 with fcol2:
-                                    if st.button("👎 Not relevant", key=f"nrel_{paper['paper_id']}"):
+                                    if st.button("Not relevant", key=f"nrel_{paper['paper_id']}"):
                                         api_post("/api/feedback", data={
                                             "visit_id": analysis["visit_id"],
                                             "feedback_type": "literature_relevance",
@@ -420,7 +420,7 @@ if page == "Upload & Process":
                             verified = med.get("verified", True)
                             label = f"{med['name']} {med.get('dose', '')} — {med.get('frequency', '')}"
                             if not verified:
-                                label += " ⚠️ unverified"
+                                label += " (unverified)"
                             if st.checkbox(label, value=True, key=f"rev_med_{i}"):
                                 approved_meds.append(med)
 
@@ -432,7 +432,7 @@ if page == "Upload & Process":
                             verified = test.get("verified", True)
                             label = f"{test['test_name']} — {test.get('timeline', '')}"
                             if not verified:
-                                label += " ⚠️ unverified"
+                                label += " (unverified)"
                             if st.checkbox(label, value=True, key=f"rev_test_{i}"):
                                 approved_tests.append(test)
 
@@ -444,7 +444,7 @@ if page == "Upload & Process":
                             verified = fu.get("verified", True)
                             label = f"{fu['action']} — {fu.get('date_or_timeline', '')}"
                             if not verified:
-                                label += " ⚠️ unverified"
+                                label += " (unverified)"
                             if st.checkbox(label, value=True, key=f"rev_fu_{i}"):
                                 approved_followups.append(fu)
 
@@ -456,7 +456,7 @@ if page == "Upload & Process":
                             verified = rec.get("verified", True)
                             label = rec["recommendation"]
                             if not verified:
-                                label += " ⚠️ unverified"
+                                label += " (unverified)"
                             if st.checkbox(label, value=True, key=f"rev_life_{i}"):
                                 approved_lifestyle.append(rec)
 
@@ -468,7 +468,7 @@ if page == "Upload & Process":
                             verified = rf.get("verified", True)
                             label = rf["warning"]
                             if not verified:
-                                label += " ⚠️ unverified"
+                                label += " (unverified)"
                             if st.checkbox(label, value=True, key=f"rev_rf_{i}"):
                                 approved_flags.append(rf)
 
@@ -480,7 +480,7 @@ if page == "Upload & Process":
                             verified = qa.get("verified", True)
                             label = f"Q: {qa['question']}"
                             if not verified:
-                                label += " ⚠️ unverified"
+                                label += " (unverified)"
                             if st.checkbox(label, value=True, key=f"rev_qa_{i}"):
                                 approved_qa.append(qa)
 
@@ -569,7 +569,7 @@ elif page == "Visit History":
                             # Feedback buttons for extraction accuracy
                             fcol1, fcol2, fcol3 = st.columns(3)
                             with fcol1:
-                                if st.button("✅ Correct", key=f"c_{visit['id']}_{med['name']}"):
+                                if st.button("Correct", key=f"c_{visit['id']}_{med['name']}"):
                                     api_post("/api/feedback", data={
                                         "visit_id": visit["id"],
                                         "feedback_type": "extraction_accuracy",
@@ -579,7 +579,7 @@ elif page == "Visit History":
                                     })
                                     st.success("Feedback recorded!")
                             with fcol2:
-                                if st.button("❌ Incorrect", key=f"i_{visit['id']}_{med['name']}"):
+                                if st.button("Incorrect", key=f"i_{visit['id']}_{med['name']}"):
                                     api_post("/api/feedback", data={
                                         "visit_id": visit["id"],
                                         "feedback_type": "extraction_accuracy",
@@ -729,7 +729,7 @@ elif page == "Visit History":
                                 verified = med.get("verified", True)
                                 label = f"{med['name']} {med.get('dose', '')} — {med.get('frequency', '')}"
                                 if not verified:
-                                    label += " ⚠️ unverified"
+                                    label += " (unverified)"
                                 if st.checkbox(label, value=True, key=f"hist_med_{vid}_{i}"):
                                     approved_meds.append(med)
 
@@ -740,7 +740,7 @@ elif page == "Visit History":
                                 verified = test.get("verified", True)
                                 label = f"{test['test_name']} — {test.get('timeline', '')}"
                                 if not verified:
-                                    label += " ⚠️ unverified"
+                                    label += " (unverified)"
                                 if st.checkbox(label, value=True, key=f"hist_test_{vid}_{i}"):
                                     approved_tests.append(test)
 
@@ -751,7 +751,7 @@ elif page == "Visit History":
                                 verified = fu.get("verified", True)
                                 label = f"{fu['action']} — {fu.get('date_or_timeline', '')}"
                                 if not verified:
-                                    label += " ⚠️ unverified"
+                                    label += " (unverified)"
                                 if st.checkbox(label, value=True, key=f"hist_fu_{vid}_{i}"):
                                     approved_followups.append(fu)
 
@@ -762,7 +762,7 @@ elif page == "Visit History":
                                 verified = rec.get("verified", True)
                                 label = rec["recommendation"]
                                 if not verified:
-                                    label += " ⚠️ unverified"
+                                    label += " (unverified)"
                                 if st.checkbox(label, value=True, key=f"hist_life_{vid}_{i}"):
                                     approved_lifestyle.append(rec)
 
@@ -773,7 +773,7 @@ elif page == "Visit History":
                                 verified = rf.get("verified", True)
                                 label = rf["warning"]
                                 if not verified:
-                                    label += " ⚠️ unverified"
+                                    label += " (unverified)"
                                 if st.checkbox(label, value=True, key=f"hist_rf_{vid}_{i}"):
                                     approved_flags.append(rf)
 
@@ -784,7 +784,7 @@ elif page == "Visit History":
                                 verified = qa.get("verified", True)
                                 label = f"Q: {qa['question']}"
                                 if not verified:
-                                    label += " ⚠️ unverified"
+                                    label += " (unverified)"
                                 if st.checkbox(label, value=True, key=f"hist_qa_{vid}_{i}"):
                                     approved_qa.append(qa)
 
@@ -895,7 +895,7 @@ elif page == "Analytics Dashboard":
             for paper in top_papers[:5]:
                 st.markdown(
                     f"- {paper['title']} "
-                    f"(👍 {paper['positive_votes']}/{paper['total_votes']})"
+                    f"({paper['positive_votes']}/{paper['total_votes']} positive)"
                 )
 
         # Most useful keywords

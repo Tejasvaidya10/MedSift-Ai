@@ -350,7 +350,7 @@ export default function VisitDetailPage() {
           {/* Tests */}
           {(visit.patient_summary.tests_ordered?.length ?? 0) > 0 && (
             <Card>
-              <CardHeader className="pb-2"><CardTitle className="text-sm">🔬 Tests Ordered</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-sm">Tests Ordered</CardTitle></CardHeader>
               <CardContent className="space-y-2">
                 {visit.patient_summary.tests_ordered?.map((t, i) => {
                   const key = `test-${i}`;
@@ -380,7 +380,7 @@ export default function VisitDetailPage() {
           {/* Lifestyle recommendations */}
           {(visit.patient_summary.lifestyle_recommendations?.length ?? 0) > 0 && (
             <Card>
-              <CardHeader className="pb-2"><CardTitle className="text-sm">🌿 Lifestyle Recommendations</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-sm">Lifestyle Recommendations</CardTitle></CardHeader>
               <CardContent className="space-y-2">
                 {visit.patient_summary.lifestyle_recommendations?.map((lr, i) => (
                   <div key={i} className="border rounded-lg p-3 text-sm">
@@ -395,7 +395,7 @@ export default function VisitDetailPage() {
           {/* Follow-up Plan */}
           {(visit.patient_summary.follow_up_plan?.length ?? 0) > 0 && (
             <Card>
-              <CardHeader className="pb-2"><CardTitle className="text-sm">📅 Follow-up Plan</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-sm">Follow-up Plan</CardTitle></CardHeader>
               <CardContent className="space-y-2">
                 {visit.patient_summary.follow_up_plan?.map((fu, i) => (
                   <div key={i} className="flex items-start gap-2 text-sm">
@@ -425,7 +425,7 @@ export default function VisitDetailPage() {
           {/* Q&A */}
           {(visit.patient_summary.questions_and_answers?.length ?? 0) > 0 && (
             <Card>
-              <CardHeader className="pb-2"><CardTitle className="text-sm">💬 Questions & Answers</CardTitle></CardHeader>
+              <CardHeader className="pb-2"><CardTitle className="text-sm">Questions & Answers</CardTitle></CardHeader>
               <CardContent className="space-y-3">
                 {visit.patient_summary.questions_and_answers?.map((qa, i) => (
                   <div key={i} className="border rounded-lg p-3 text-sm">
@@ -519,7 +519,7 @@ export default function VisitDetailPage() {
       {activeTab === "research" && isClinician && (
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <h2 className="font-semibold text-sm mb-3">📚 Published Research</h2>
+            <h2 className="font-semibold text-sm mb-3">Published Research</h2>
             {literature.length === 0 ? (
               <p className="text-sm text-muted-foreground">No papers found. <Link href={`/literature/${visitId}`} className="text-primary underline">Refresh search →</Link></p>
             ) : (
@@ -548,7 +548,7 @@ export default function VisitDetailPage() {
             )}
           </div>
           <div>
-            <h2 className="font-semibold text-sm mb-3">🔬 Clinical Trials</h2>
+            <h2 className="font-semibold text-sm mb-3">Clinical Trials</h2>
             {trials.length === 0 ? (
               <p className="text-sm text-muted-foreground">No trials found.</p>
             ) : (

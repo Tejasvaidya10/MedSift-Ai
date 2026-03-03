@@ -1,5 +1,11 @@
-# OS / editor
+# OS and editor files
 .DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
 
 # Build prompt (not for repo)
 MedSift_AI_Claude_Code_Prompt.md
@@ -12,9 +18,19 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Next.js
+node_modules/
+frontend/.next/
+frontend/out/
 
 # Environment
 .env
+.env.local
+.env*.local
 
 # Database
 data/medsift.db

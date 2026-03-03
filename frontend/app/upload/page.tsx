@@ -457,7 +457,7 @@ export default function UploadPage() {
               </Card>
               {analyzeResult.patient_summary.medications.length > 0 && (
                 <Card>
-                  <CardHeader className="pb-2"><CardTitle className="text-sm">💊 Medications</CardTitle></CardHeader>
+                  <CardHeader className="pb-2"><CardTitle className="text-sm">Medications</CardTitle></CardHeader>
                   <CardContent className="space-y-3">
                     {analyzeResult.patient_summary.medications.map((med, i) => (
                       <div key={i} className="border rounded-lg p-3 text-sm">
@@ -471,7 +471,7 @@ export default function UploadPage() {
               )}
               {analyzeResult.patient_summary.tests_ordered.length > 0 && (
                 <Card>
-                  <CardHeader className="pb-2"><CardTitle className="text-sm">🔬 Tests Ordered</CardTitle></CardHeader>
+                  <CardHeader className="pb-2"><CardTitle className="text-sm">Tests Ordered</CardTitle></CardHeader>
                   <CardContent className="space-y-2">
                     {analyzeResult.patient_summary.tests_ordered.map((t, i) => (
                       <div key={i} className="border rounded-lg p-3 text-sm">
@@ -484,7 +484,7 @@ export default function UploadPage() {
               )}
               {analyzeResult.patient_summary.red_flags_for_patient.length > 0 && (
                 <Card className="border-red-200 bg-red-50 md:col-span-2">
-                  <CardHeader className="pb-2"><CardTitle className="text-sm text-red-700">⚠️ When to Seek Urgent Care</CardTitle></CardHeader>
+                  <CardHeader className="pb-2"><CardTitle className="text-sm text-red-700">When to Seek Urgent Care</CardTitle></CardHeader>
                   <CardContent className="space-y-2">
                     {analyzeResult.patient_summary.red_flags_for_patient.map((rf, i) => (
                       <p key={i} className="text-sm text-red-700 font-medium">• {rf.warning}</p>
