@@ -90,9 +90,9 @@ fi
 
 # -- Step 8: Create .env if missing --
 if [ ! -f ".env" ]; then
-    if [ -f ".env.example" ]; then
-        info "Creating .env from .env.example..."
-        cp .env.example .env
+    if [ -f "env.example" ]; then
+        info "Creating .env from env.example..."
+        cp env.example .env
     fi
 fi
 

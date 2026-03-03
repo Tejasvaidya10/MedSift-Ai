@@ -516,7 +516,7 @@ if page == "Upload & Process":
                             )
                             r.raise_for_status()
                             st.download_button(
-                                "📥 Download Approved After Visit Summary",
+                                "Download Approved After Visit Summary",
                                 data=r.content,
                                 file_name=f"MedSift_Visit_{analysis['visit_id']}_Approved.pdf",
                                 mime="application/pdf",
@@ -817,7 +817,7 @@ elif page == "Visit History":
                                 )
                                 r.raise_for_status()
                                 st.download_button(
-                                    "📥 Download Approved After Visit Summary",
+                                    "Download Approved After Visit Summary",
                                     data=r.content,
                                     file_name=f"MedSift_Visit_{vid}_Approved.pdf",
                                     mime="application/pdf",
