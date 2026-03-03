@@ -7,8 +7,9 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Build prompt (not for repo)
+# Build prompts and requirement docs (not for repo)
 MedSift_AI_Claude_Code_Prompt.md
+FRONTEND_REQUIREMENTS.md
 
 # Python
 venv/
