@@ -32,6 +32,9 @@ frontend/out/
 .env.local
 .env*.local
 
+# Cache
+.demo_cache/
+
 # Database
 data/medsift.db
 
@@ -41,5 +44,6 @@ data/medsift.db
 *.m4a
 *.webm
 
-# PDF output
+# Documents
 *.pdf
+*.docx
